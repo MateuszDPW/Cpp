@@ -1,0 +1,32 @@
+// extern "C" w C++
+// Kiedy kompilator C++ napotka na tę funkcję, traktuje zawarte w niej deklaracje jako C.
+extern "C" {
+    void funkcja_z_C();
+}
+
+extern "C" {
+    void funkcja1_z_C();
+    void funkcja2_z_C();
+    // inne deklaracje
+}
+
+//dla plików nagłówkowych które są włączane zarówno do plików źródłowych C jak i C++ można użyć waruku preprocesora:
+#ifdef __cplusplus
+extern "C"{
+#endif
+
+void funkcja1_z_C();
+void funkcja2_z_C();
+// inne deklaracje
+
+#ifdef __cplusplus
+}
+#endif
+
+// Linkowanie
+// upewnić się że pliki źródłowe C są kompilowane przy użyciu kompilatora C, a pliki C++ z kompilatorem C++.
+
+// Różnice w traktowaniu zmiennych i konwencjach
+// Konwencje nazewnictwa
+// Zmienne globalne
+// Zarządzanie pamięcią: jeżeli alokujesz pamięć w C(używając malloc) i zwalniasz ją w C++(używając delete) lub odwrotnie, może to prowadzić do błędów, używać malloc z free i new z delete.
